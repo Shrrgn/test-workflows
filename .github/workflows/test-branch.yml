@@ -13,9 +13,9 @@ jobs:
         id: branch_check
         run: |
           echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+          if [ "${{ github.ref_name }}" = "main" ]; then
             echo "::set-output name=env_name::prod"
-          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then
+          elif [ "${{ github.ref_name }}" = "dev" ]; then
             echo "::set-output name=env_name::dev"
           else
              echo "::set-output name=env_name::some"
@@ -27,18 +27,6 @@ jobs:
       - name: Set output
         id: vars
         run: echo ${{ steps.branch_check.outputs.env_name }}
-        
-      - name: test1
-        run: echo ${{ github.api_url }}
-      
-      - name: branch name
-        run: echo ${{ github.base_ref }}
-      
-      - name: ddd
-        run: echo ${{ github.ref_name }}
-        
-      - name: repo_url
-        run: echo ${{ github.repositoryUrl }}
         
     outputs:
       env_name: ${{ steps.branch_check.outputs.env_name }}
@@ -56,3 +44,13 @@ jobs:
       
       - name: print digit
         run: echo $((${{ secrets.DIGIT }}+5))
+        
+  check2:
+    runs-on: ubuntu-latest 
+    needs: [choose_branch, check]
+    environment: ${{ needs.choose_branch.outputs.env_name }}
+    steps:
+      - name: print env
+        run: echo ${{ needs.choose_branch.outputs.env_name }}
+        
+    
