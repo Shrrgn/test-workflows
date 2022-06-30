@@ -29,7 +29,16 @@ jobs:
         run: echo ${{ steps.branch_check.outputs.env_name }}
         
       - name: test1
-        run: echo ${{ github.head_ref }}
+        run: echo ${{ github.api_url }}
+      
+      - name: branch name
+        run: echo ${{ github.base_ref }}
+      
+      - name: ddd
+        run: ${{ github.ref_name }}
+        
+      - name: repo_url
+        run: echo ${{ github.repositoryUrl }}
         
     outputs:
       env_name: ${{ steps.branch_check.outputs.env_name }}
