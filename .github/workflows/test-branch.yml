@@ -28,6 +28,9 @@ jobs:
         id: vars
         run: echo ${{ steps.branch_check.outputs.env_name }}
         
+      - name: test1
+        run: echo ${{ github.head_ref }}
+        
     outputs:
       env_name: ${{ steps.branch_check.outputs.env_name }}
       
