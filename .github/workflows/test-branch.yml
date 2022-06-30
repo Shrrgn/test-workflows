@@ -1,0 +1,16 @@
+name: test-ci
+
+on:
+  workflow_dispatch:
+  
+  
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: branch
+        run: echo ${{ github.ref }}
+      
+      - name: print digit
+        run: echo $((${{ secrets.DIGIT }}+5))
