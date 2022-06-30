@@ -13,12 +13,12 @@ jobs:
         id: branch_check
         run: |
           echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
             echo "::set-output name=env_name::Production"
-          elif [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then
             echo "::set-output name=env_name::Test"
           else
-             echo "::set-output name=env_name::Features"
+             echo "::set-output name=env_name::some"
           fi         
           
       - name: Use variable setup in previous step
