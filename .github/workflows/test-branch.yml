@@ -28,6 +28,7 @@ jobs:
         run: | 
           if ["${{ steps.branch_check.outputs.env_name }}" == "some"]; then
           exit 1
+          fi
       
       - name: Set output
         id: vars
