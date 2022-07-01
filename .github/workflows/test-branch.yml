@@ -25,10 +25,8 @@ jobs:
         run: echo "I'm using variable ${{ steps.branch_check.outputs.env_name }}"
         
       - name: check valid env
-        run: | 
-          if ["${{ steps.branch_check.outputs.env_name }}" == "some"]; then
-          exit 1
-          fi
+        if: ${{ steps.branch_check.outputs.env_name }} == some
+        run: exit 1
       
       - name: Set output
         id: vars
