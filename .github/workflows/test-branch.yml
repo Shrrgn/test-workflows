@@ -26,10 +26,7 @@ jobs:
         
       - name: check valid env
         if: ${{ steps.branch_check.outputs.env_name }} == some
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('envA and envB are not equivalent!')
+        run: exit 1
       
       - name: Set output
         id: vars
