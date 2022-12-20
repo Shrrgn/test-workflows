@@ -59,5 +59,8 @@ jobs:
     steps:
       - name: print env
         run: echo ${{ needs.choose_branch.outputs.env_name }}
+      
+      - name: Echo
+        run: echo "Hi"
         
     
